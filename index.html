@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <title>Gentle Souls - Introvert Support & Comfort Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Gentle Souls</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#resources" class="nav-link">Resources</a>
+                <a href="#community" class="nav-link">Community</a>
+                <a href="#about" class="nav-link">About</a>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome, Gentle Soul</h1>
+                <p class="hero-subtitle">A safe space for introverts to find comfort, understanding, and tools for navigating a world that doesn't always understand quiet strength.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('shop')">Explore Comfort Items</button>
+                    <button class="btn-secondary" onclick="scrollToSection('resources')">Find Your Peace</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="floating-item" style="background: #FFB3BA;"></div>
+                    <div class="floating-item" style="background: #BAE1FF;"></div>
+                    <div class="floating-item" style="background: #BAFFC9;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mood-Based Shopping -->
+        <section class="mood-shopping">
+            <h2 class="section-title">How are you feeling today?</h2>
+            <div class="mood-grid">
+                <div class="mood-card" data-mood="overwhelmed">
+                    <div class="mood-icon">😰</div>
+                    <h3>Overwhelmed</h3>
+                    <p>Need some quiet comfort?</p>
+                </div>
+                <div class="mood-card" data-mood="anxious">
+                    <div class="mood-icon">😟</div>
+                    <h3>Socially Anxious</h3>
+                    <p>Tools to help you navigate</p>
+                </div>
+                <div class="mood-card" data-mood="tired">
+                    <div class="mood-icon">😴</div>
+                    <h3>Energy Drained</h3>
+                    <p>Time to recharge</p>
+                </div>
+                <div class="mood-card" data-mood="peaceful">
+                    <div class="mood-icon">😌</div>
+                    <h3>Seeking Peace</h3>
+                    <p>Enhance your calm</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="shop" class="shop-section">
+            <h2 class="section-title">Comfort & Support Shop</h2>
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All Items</button>
+                <button class="tab-btn" data-category="self-care">Self Care</button>
+                <button class="tab-btn" data-category="social">Social Tools</button>
+                <button class="tab-btn" data-category="comfort">Comfort Items</button>
+                <button class="tab-btn" data-category="digital">Digital</button>
+            </div>
+            
+            
+            <div class="products-grid">
+                <!-- Self Care Products -->
+                <div class="product-card" data-category="self-care" data-mood="overwhelmed peaceful">
+                    <div class="product-image" style="background: linear-gradient(135deg, #FFB3BA, #FFB3F7);">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Lavender Calm Candle</h3>
+                        <p>Soothing lavender scent for quiet moments</p>
+                        <div class="product-price">$24.99</div>
+                        <button class="add-to-cart" data-id="1" data-name="Lavender Calm Candle" data-price="24.99">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="self-care" data-mood="peaceful">
+                    <div class="product-image" style="background: linear-gradient(135deg, #BAE1FF, #B3E5FF);">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Lavender Aroma</h3>
+                        <p>Describe your lavender aroma product here.</p>
+                        <div class="product-price">$19.99</div>
+                        <button class="add-to-cart" data-id="7" data-name="Lavender Aroma" data-price="19.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="comfort" data-mood="tired peaceful">
+                    <div class="product-image" style="background: linear-gradient(135deg, #BAE1FF, #B3E5FF);">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Weighted Blanket</h3>
+                        <p>Deep pressure comfort for better sleep</p>
+                        <div class="product-price">$89.99</div>
+                        <button class="add-to-cart" data-id="2" data-name="Weighted Blanket" data-price="89.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="social" data-mood="anxious">
+                    <div class="product-image" style="background: linear-gradient(135deg, #BAFFC9, #FFFFBA);">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Conversation Starter Cards</h3>
+                        <p>Gentle prompts for social situations</p>
+                        <div class="product-price">$18.99</div>
+                        <button class="add-to-cart" data-id="3" data-name="Conversation Starter Cards" data-price="18.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="comfort" data-mood="overwhelmed">
+                    <div class="product-image" style="background: linear-gradient(135deg, #FFB3F7, #FFB3BA);">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Noise-Canceling Headphones</h3>
+                        <p>Create your own quiet space anywhere</p>
+                        <div class="product-price">$149.99</div>
+                        <button class="add-to-cart" data-id="4" data-name="Noise-Canceling Headphones" data-price="149.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="self-care" data-mood="peaceful">
+                    <div class="product-image" style="background: linear-gradient(135deg, #FFFFBA, #BAFFC9);">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gentle Journal</h3>
+                        <p>Thoughtful prompts for self-reflection</p>
+                        <div class="product-price">$22.99</div>
+                        <button class="add-to-cart" data-id="5" data-name="Gentle Journal" data-price="22.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="digital" data-mood="all">
+                    <div class="product-image" style="background: linear-gradient(135deg, #B3E5FF, #BAE1FF);">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Introvert's Guide E-Book</h3>
+                        <p>Digital guide to thriving as an introvert</p>
+                        <div class="product-price">$14.99</div>
+                        
+                        <button class="add-to-cart" data-id="6" data-name="Introvert's Guide E-Book" data-price="14.99">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Digital Product: Calm Focus Playlist -->
+                <div class="product-card" data-category="digital" data-mood="peaceful tired">
+                    <div class="product-image" style="background: linear-gradient(135deg, #BAE1FF, #B3E5FF);">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Playlist to help you focus and study</h3>
+                        <p>Curated lo-fi and ambient tracks to help you find your flow.</p>
+                        <ul class="playlist">
+                            <li class="track" data-track-id="quiet-dawn"><button class="play-track" data-track-id="quiet-dawn">Play</button> <span>Quiet Dawn – 3:12</span></li>
+                            <li class="track" data-track-id="soft-horizons"><button class="play-track" data-track-id="soft-horizons">Play</button> <span>Soft Horizons – 2:58</span></li>
+                            <li class="track" data-track-id="warm-tea-break"><button class="play-track" data-track-id="warm-tea-break">Play</button> <span>Warm Tea Break – 3:27</span></li>
+                            <li class="track" data-track-id="window-light"><button class="play-track" data-track-id="window-light">Play</button> <span>Window Light – 2:45</span></li>
+                            <li class="track" data-track-id="gentle-rain-notes"><button class="play-track" data-track-id="gentle-rain-notes">Play</button> <span>Gentle Rain Notes – 3:05</span></li>
+                        </ul>
+                        <div class="product-price">$7.99</div>
+                        <button class="add-to-cart" data-id="8" data-name="Calm Focus Playlist" data-price="7.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="mood" data-mood="anxiety">
+                    <div class="product-image" style="background: linear-gradient(135deg, #FFD6E0, #B3E5FF);">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Anxiety Relief Card</h3>
+                        <p>Soothing affirmations and grounding exercises for anxious moments</p>
+                        <div class="product-price">$9.99</div>
+                        <button class="add-to-cart" data-id="7" data-name="Anxiety Relief Card" data-price="9.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section">
+            <h2 class="section-title">Resources for Quiet Souls</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">🧘‍♀️</div>
+                    <h3>Meditation for Introverts</h3>
+                    <p>Guided sessions designed for quiet minds</p>
+                    <button class="resource-btn">Listen Now</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">📝</div>
+                    <h3>Journaling Prompts</h3>
+                    <p>Thoughtful questions for self-discovery</p>
+                    <button class="resource-btn">Get Prompts</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">🌱</div>
+                    <h3>Self-Care Tips</h3>
+                    <p>Gentle ways to recharge your energy</p>
+                    <button class="resource-btn">Read More</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">💬</div>
+                    <h3>Social Energy Management</h3>
+                    <p>How to navigate social situations</p>
+                    <button class="resource-btn">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="community-section">
+            <h2 class="section-title">Gentle Community</h2>
+            <p class="community-intro">A safe space to connect with fellow introverts. No pressure, no judgment - just understanding souls supporting each other.</p>
+            
+            <div class="community-features">
+                <div class="community-card">
+                    <div class="community-icon">🤫</div>
+                    <h3>Anonymous Sharing</h3>
+                    <p>Share your thoughts and experiences without revealing your identity</p>
+                    <button class="community-btn" onclick="openAnonymousPost()">Share Anonymously</button>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">💭</div>
+                    <h3>Gentle Discussions</h3>
+                    <p>Join thoughtful conversations about introvert life</p>
+                    <button class="community-btn" onclick="openDiscussions()">View Topics</button>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">🤝</div>
+                    <h3>Support Groups</h3>
+                    <p>Small, intimate groups for specific challenges</p>
+                    <button class="community-btn" onclick="openSupportGroups()">Find Groups</button>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">📚</div>
+                    <h3>Wisdom Library</h3>
+                    <p>Collective insights from the introvert community</p>
+                    <button class="community-btn" onclick="openWisdomLibrary()">Browse Wisdom</button>
+                </div>
+            </div>
+
+            <!-- Community Feed -->
+            <div class="community-feed">
+                <h3>Recent Community Posts</h3>
+                <div class="feed-container">
+                    <div class="community-post">
+                        <div class="post-header">
+                            <span class="post-author">Anonymous Soul</span>
+                            <span class="post-time">2 hours ago</span>
+                        </div>
+                        <p class="post-content">"Today I said no to a social event and felt guilty. But then I remembered that my quiet time is just as valuable as anyone else's social time. Self-care isn't selfish."</p>
+                        <div class="post-actions">
+                            <button class="post-action" onclick="likePost(this)">💕 <span>24</span></button>
+                            <button class="post-action" onclick="showSupport(this)">🤗 <span>Support</span></button>
+                        </div>
+                    </div>
+
+                    <div class="community-post">
+                        <div class="post-header">
+                            <span class="post-author">Quiet Observer</span>
+                            <span class="post-time">5 hours ago</span>
+                        </div>
+                        <p class="post-content">"Found a perfect reading spot in my local library today. Sometimes the best adventures are the quiet ones. Anyone else have a favorite peaceful place?"</p>
+                        <div class="post-actions">
+                            <button class="post-action" onclick="likePost(this)">💕 <span>18</span></button>
+                            <button class="post-action" onclick="showSupport(this)">🤗 <span>Support</span></button>
+                        </div>
+                    </div>
+
+                    <div class="community-post">
+                        <div class="post-header">
+                            <span class="post-author">Gentle Dreamer</span>
+                            <span class="post-time">1 day ago</span>
+                        </div>
+                        <p class="post-content">"Tip: When you need to recharge, try the 5-4-3-2-1 grounding technique. Name 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, 1 you can taste. It helps me when I'm overwhelmed."</p>
+                        <div class="post-actions">
+                            <button class="post-action" onclick="likePost(this)">💕 <span>42</span></button>
+                            <button class="post-action" onclick="showSupport(this)">🤗 <span>Support</span></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="load-more-btn" onclick="loadMorePosts()">Load More Gentle Posts</button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-content">
+                <h2 class="section-title">About Gentle Souls</h2>
+                <p class="about-text">
+                    Created by introverts, for introverts. We understand that the world can feel overwhelming, 
+                    and that's okay. Our mission is to provide comfort, understanding, and tools to help you 
+                    navigate life on your own terms. You don't need to change who you are - you just need 
+                    the right support.
+                </p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>10,000+</h3>
+                        <p>Gentle souls supported</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Comfort products</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h3>
+                        <p>Understanding community</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shopping Cart Modal -->
+        <div id="cartModal" class="cart-modal">
+            <div class="cart-content">
+                <div class="cart-header">
+                    <h3>Your Comfort Cart</h3>
+                    <button class="close-cart">&times;</button>
+                </div>
+                <div class="cart-items">
+                    <!-- Cart items will be populated here -->
+                </div>
+                <div class="cart-total">
+                    <h4>Total: $<span id="cartTotal">0.00</span></h4>
+                    <button class="checkout-btn">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gentle Souls</h3>
+                <p>Supporting introverts with understanding and comfort.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#shop">Shop</a>
+                <a href="#resources">Resources</a>
+                <a href="#community">Community</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>hello@gentlesouls.com</p>
+                <p>We respond within 24 hours</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gentle Souls. Made with 💕 for quiet strength.</p>
+        </div>
+    </footer>
+
+    <script src="security-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
