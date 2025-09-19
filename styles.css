@@ -332,6 +332,43 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Simple playlist styling inside product cards */
+.playlist {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 1rem 0;
+}
+
+.playlist li {
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    background: #F8F9FF;
+    border-radius: 10px;
+    color: #6B5B95;
+    font-size: 0.95rem;
+}
+
+.playlist .play-track {
+    background: #6B5B95;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 6px 10px;
+    margin-right: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.playlist .play-track:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(107, 91, 149, 0.25);
+}
+
+.playlist .play-track.playing {
+    background: linear-gradient(135deg, #BAE1FF, #B3E5FF);
+}
+
 .product-price {
     font-size: 1.5rem;
     font-weight: 600;
