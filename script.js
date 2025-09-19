@@ -410,6 +410,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Community Features
     initializeCommunityFeatures();
+    initializePlaylist();
 });
 
 // Community Functions (Global scope for onclick handlers)
@@ -424,6 +425,146 @@ function openAnonymousPost() {
         </div>
     `);
     document.body.appendChild(modal);
+}
+
+// Web Audio API: Simple ambient track generator
+function initializePlaylist() {
+    const buttons = document.querySelectorAll('.play-track');
+    if (!buttons.length) return;
+
+    const AudioContextRef = window.AudioContext || window.webkitAudioContext;
+    let audioContext = null;
+    const playingById = new Map();
+
+    function ensureContext() {
+        if (!audioContext) {
+            audioContext = new AudioContextRef();
+        }
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+        return audioContext;
+    }
+
+    function createAmbientPatch(trackId) {
+        const ctx = ensureContext();
+        const masterGain = ctx.createGain();
+        masterGain.gain.value = 0.15;
+        masterGain.connect(ctx.destination);
+
+        // Base oscillator
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        const baseFreq = {
+            'quiet-dawn': 220,
+            'soft-horizons': 260,
+            'warm-tea-break': 240,
+            'window-light': 280,
+            'gentle-rain-notes': 200
+        }[trackId] || 230;
+        osc.frequency.value = baseFreq;
+
+        // Gentle tremolo
+        const tremolo = ctx.createOscillator();
+        tremolo.type = 'sine';
+        tremolo.frequency.value = 0.4;
+        const tremoloGain = ctx.createGain();
+        tremoloGain.gain.value = 0.08;
+        tremolo.connect(tremoloGain);
+        tremoloGain.connect(masterGain.gain);
+
+        // Subtle noise for texture (for rain-like)
+        const noiseBuffer = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < data.length; i++) {
+            data[i] = (Math.random() * 2 - 1) * 0.02;
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = noiseBuffer;
+        noise.loop = true;
+        const noiseFilter = ctx.createBiquadFilter();
+        noiseFilter.type = 'lowpass';
+        noiseFilter.frequency.value = trackId === 'gentle-rain-notes' ? 1200 : 500;
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.value = trackId === 'gentle-rain-notes' ? 0.15 : 0.05;
+
+        // Soft attack envelope
+        const outputGain = ctx.createGain();
+        outputGain.gain.value = 0;
+        outputGain.connect(masterGain);
+
+        osc.connect(outputGain);
+        noise.connect(noiseFilter);
+        noiseFilter.connect(noiseGain);
+        noiseGain.connect(masterGain);
+
+        // Start nodes
+        const now = ctx.currentTime;
+        osc.start(now);
+        tremolo.start(now);
+        noise.start(now);
+        outputGain.gain.linearRampToValueAtTime(0.6, now + 0.8);
+
+        // Mild melodic LFO
+        const lfo = ctx.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.value = 0.07;
+        const lfoGain = ctx.createGain();
+        lfoGain.gain.value = 8; // Hz modulation depth
+        lfo.connect(lfoGain);
+        lfoGain.connect(osc.frequency);
+        lfo.start(now);
+
+        return {
+            stop: () => {
+                const stopAt = ctx.currentTime + 0.5;
+                outputGain.gain.cancelScheduledValues(ctx.currentTime);
+                outputGain.gain.linearRampToValueAtTime(0, stopAt);
+                setTimeout(() => {
+                    try { osc.stop(); } catch (e) {}
+                    try { tremolo.stop(); } catch (e) {}
+                    try { noise.stop(); } catch (e) {}
+                    try { lfo.stop(); } catch (e) {}
+                    masterGain.disconnect();
+                }, 600);
+            }
+        };
+    }
+
+    function toggleTrack(trackId, button) {
+        if (playingById.has(trackId)) {
+            const node = playingById.get(trackId);
+            node.stop();
+            playingById.delete(trackId);
+            button.textContent = 'Play';
+            button.classList.remove('playing');
+            return;
+        }
+
+        // Stop other tracks
+        for (const [id, node] of Array.from(playingById.entries())) {
+            node.stop();
+            playingById.delete(id);
+            const otherBtn = document.querySelector(`.play-track[data-track-id="${id}"]`);
+            if (otherBtn) {
+                otherBtn.textContent = 'Play';
+                otherBtn.classList.remove('playing');
+            }
+        }
+
+        // Start this track
+        const patch = createAmbientPatch(trackId);
+        playingById.set(trackId, patch);
+        button.textContent = 'Stop';
+        button.classList.add('playing');
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-track-id');
+            toggleTrack(id, btn);
+        });
+    });
 }
 
 function openDiscussions() {
